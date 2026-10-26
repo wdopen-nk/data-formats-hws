@@ -1,0 +1,54 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix schema: <http://schema.org/>.
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+@prefix ex: <http://example.org/vocabulary/>.
+
+
+# Person                       -> schema:Person  (label: schema:name, full name)
+#   firstName                  -> schema:givenName
+#   lastName                   -> schema:familyName
+#   phoneNumber [0..*]         -> vcard:hasTelephone (repeated, tel: IRIs)
+# Employee                     -> ex:Employee   (rdfs:subClassOf schema:Person)
+# Customer                     -> ex:Customer   (rdfs:subClassOf schema:Person)
+# Dealership                   -> schema:AutoDealer
+#   name                 -> schema:name
+#   address              -> schema:address
+#   foundedDate          -> schema:foundingDate
+# Car                    -> schema:Car     
+#   color                -> schema:color
+#   manufacturedDate     -> schema:productionDate
+#   vin                  -> schema:vehicleIdentificationNumber
+# CarModel                     -> ex:CarModel   (rdfs:subClassOf schema:ProductModel)
+#   modelName                  -> schema:name
+#   debutDate                  -> schema:releaseDate
+#   enginePower                -> ex:enginePower
+#
+# full-time employee  Employee -> Dealership   schema:worksFor
+# regular customer    Customer -> Dealership   ex:regularCustomerOf
+# buyer               Car      -> Customer     ex:buyer
+# dealer              Car      -> Dealership   ex:dealer
+# model               Car      -> CarModel     schema:model
+
+#Classes
+
+ex:Employee a rdfs:Class ;
+    rdfs:label "Employee"@en ;
+    rdfs:comment "A person employed full-time by a car dealership."@en ;
+    rdfs:subClassOf schema:Person .
+
+ex:Customer a rdfs:Class ;
+    rdfs:label "Customer"@en ;
+    rdfs:comment "A person who has bought a car or is a regular customer of a car dealership."@en ;
+    rdfs:subClassOf schema:Person .
+
+ex:CarModel a rdfs:Class ;
+    rdfs:label "Car model"@en ;
+    rdfs:comment "A model of car produced by a manufacturer."@en ;
+    rdfs:subClassOf schema:ProductModel .        ???????
+
+
+
+
+
+
