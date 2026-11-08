@@ -3,14 +3,15 @@
 @prefix schema: <http://schema.org/>.
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
 @prefix ex: <http://example.org/vocabulary/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
-# Person                       -> schema:Person  (label: schema:name, full name)
+# Person                       -> schema:Person 
 #   firstName                  -> schema:givenName
 #   lastName                   -> schema:familyName
-#   phoneNumber [0..*]         -> vcard:hasTelephone (repeated, tel: IRIs)
-# Employee                     -> ex:Employee   (rdfs:subClassOf schema:Person)
-# Customer                     -> ex:Customer   (rdfs:subClassOf schema:Person)
+#   phoneNumber [0..*]         -> vcard:hasTelephone (tel: IRIs)
+# Employee                     -> ex:Employee (rdfs:subClassOf schema:Person)
+# Customer                     -> ex:Customer (rdfs:subClassOf schema:Person)
 # Dealership                   -> schema:AutoDealer
 #   name                 -> schema:name
 #   address              -> schema:address
@@ -34,18 +35,42 @@
 
 ex:Employee a rdfs:Class ;
     rdfs:label "Employee"@en ;
-    rdfs:comment "A person employed full-time by a car dealership."@en ;
+    rdfs:comment "A person employed full time by a car dealership."@en ;
     rdfs:subClassOf schema:Person .
 
 ex:Customer a rdfs:Class ;
     rdfs:label "Customer"@en ;
-    rdfs:comment "A person who has bought a car or is a regular customer of a car dealership."@en ;
+    rdfs:comment "A person who bought a car or is a regular customer of a car dealership."@en ;
     rdfs:subClassOf schema:Person .
 
 ex:CarModel a rdfs:Class ;
     rdfs:label "Car model"@en ;
-    rdfs:comment "A model of car produced by a manufacturer."@en ;
-    rdfs:subClassOf schema:ProductModel .        ???????
+    rdfs:subClassOf schema:ProductModel . 
+
+# Properties
+
+ex:enginePower a rdf:Property ;
+    rdfs:label "engine power"@en ;
+    rdfs:comment "Engine power of the car model in kilowatts (kW)."@en ;
+    rdfs:domain ex:CarModel ;
+    rdfs:range xsd:integer .
+
+ex:regularCustomerOf a rdf:Property ;
+    rdfs:label "regular customer of"@en ;
+    rdfs:domain ex:Customer ;
+    rdfs:range schema:AutoDealer .
+
+ex:buyer a rdf:Property ;
+    rdfs:label "buyer"@en ;
+    rdfs:comment "The customer who bought the car."@en ;
+    rdfs:domain schema:Car ;
+    rdfs:range ex:Customer .
+
+ex:dealer a rdf:Property ;
+    rdfs:label "dealer"@en ;
+    rdfs:comment "The dealership that has the car in stock, absent once the car has been sold."@en ;
+    rdfs:domain schema:Car ;
+    rdfs:range schema:AutoDealer .
 
 
 
