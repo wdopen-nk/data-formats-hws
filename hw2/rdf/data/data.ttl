@@ -1,0 +1,146 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix schema: <http://schema.org/>.
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+@prefix ex: <http://example.org/vocabulary/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+@prefix dealership: <http://example.org/resource/dealership/> .
+@prefix person:     <http://example.org/resource/person/> .
+@prefix car:        <http://example.org/resource/car/> .
+@prefix model:      <http://example.org/resource/car-model/> .
+
+# Dealerships
+
+dealership:praha a schema:AutoDealer ;
+    schema:name "AutoCentrum Praha"@cs ;
+    schema:address "Pod Chodovem 1267/7, 140 00 Praha 4-Chodov"@cs ;
+    schema:foundingDate "2003-05-17"^^xsd:date .
+
+dealership:brno a schema:AutoDealer ;
+    schema:name "AutoCentrum Brno"@cs ;
+    schema:address "Poříčí 805/1c, 603 00 Brno-střed"@cs ;
+    schema:foundingDate "2009-03-12"^^xsd:date .
+
+dealership:ostrava a schema:AutoDealer ;
+    schema:name "AutoCentrum Ostrava"@cs ;
+    schema:address "Cihelní 3160/49b, 702 00 Moravská Ostrava a Přívoz"@cs ;
+    schema:foundingDate "2016-10-03"^^xsd:date .
+
+# Employees
+
+person:jan-novak a ex:Employee, schema:Person ;
+    rdfs:label "Jan Novak" ;
+    schema:givenName "Jan" ;
+    schema:familyName "Novak" ;
+    vcard:hasTelephone <tel:+420774034587>, <tel:+420356756489> ;
+    schema:worksFor dealership:praha .
+
+person:petra-maximoff a ex:Employee, schema:Person ;
+    rdfs:label "Petra Maximoff" ;
+    schema:givenName "Petra" ;
+    schema:familyName "Maximoff" ;
+    vcard:hasTelephone <tel:+420602555666> ;
+    schema:worksFor dealership:praha .
+
+person:thomas-wayne a ex:Employee, schema:Person ;
+    rdfs:label "Thomas Wayne" ;    
+    schema:givenName "Thomas" ;
+    schema:familyName "Wayne" ;
+    schema:worksFor dealership:brno .
+
+# Customers
+
+person:bruce-churkobesovich a ex:Customer, schema:Person ;
+    rdfs:label "Bruce Churkobesovich" ;
+    schema:givenName "Bruce" ;
+    schema:familyName "Churkobesovich" ;
+    vcard:hasTelephone <tel:+420603777888> ;
+    ex:regularCustomerOf dealership:praha, dealership:brno .
+
+person:martin-prochazka a ex:Customer, schema:Person ;
+    rdfs:label "Martin Prochazka" ;
+    schema:givenName "Martin" ;
+    schema:familyName "Prochazka" ;
+    ex:regularCustomerOf dealership:praha .
+
+person:alice-kucerova a ex:Customer, schema:Person ;
+    rdfs:label "Alice Kucerova" ;
+    schema:givenName "Alice" ;
+    schema:familyName "Kucerova" ;
+    vcard:hasTelephone <tel:+420604999345> .
+
+# Car models
+
+model:octavia-iv a ex:CarModel ;
+    schema:name "Octavia IV"@en ;
+    schema:releaseDate "2019-11-11"^^xsd:date ;
+    ex:enginePower "110"^^xsd:integer .
+
+model:911-ii a ex:CarModel ;
+    schema:name "911 II"@en ;
+    schema:releaseDate "1973-10-04"^^xsd:date ;
+    ex:enginePower "150"^^xsd:integer .
+
+model:matiz-i a ex:CarModel ;
+    schema:name "Matiz I"@en ;
+    schema:releaseDate "1998-03-05"^^xsd:date ;
+    ex:enginePower "70"^^xsd:integer .
+
+model:kodiaq-ii a ex:CarModel ;
+    schema:name "Kodiaq II"@en ;
+    schema:releaseDate "2023-10-04"^^xsd:date ;
+    ex:enginePower "180"^^xsd:integer .
+
+# Cars
+# In stock: has a dealer, no buyer.  Sold: has a buyer, no dealer.
+
+car:1 a schema:Car ;
+    rdfs:label "Black Octavia IV "@en ;
+    schema:color "black"@en ;
+    schema:productionDate "2024-02-12"^^xsd:date ;
+    schema:vehicleIdentificationNumber "TMBAJ7NXXR0526018" ;
+    schema:model model:octavia-iv ;
+    ex:dealer dealership:praha .
+
+car:2 a schema:Car ;
+    rdfs:label "Silver Octavia IV "@en ;
+    schema:color "silver"@en ;
+    schema:productionDate "2023-11-05"^^xsd:date ;
+    schema:vehicleIdentificationNumber "TMBAG7NXXP0159083" ;
+    schema:model model:octavia-iv ;
+    ex:dealer dealership:brno .
+
+car:3 a schema:Car ;
+    rdfs:label "Purple Matiz I "@en ;
+    schema:color "purple"@en ;
+    schema:productionDate "2022-05-20"^^xsd:date ;
+    schema:vehicleIdentificationNumber "KLAMA48S3NB016613" ;
+    schema:model model:matiz-i ;
+    ex:buyer person:alice-kucerova .
+
+car:4 a schema:Car ;
+    rdfs:label "Red 911 II "@en ;
+    schema:color "red"@en ;
+    schema:productionDate "1984-07-03"^^xsd:date ;
+    schema:vehicleIdentificationNumber "WP0ZZZ911ES186091" ;
+    schema:model model:911-ii ;
+    ex:buyer person:bruce-churkobesovich.
+
+car:5 a schema:Car ;
+    rdfs:label "White Matiz I "@en ;
+    schema:color "white"@en ;
+    schema:productionDate "2024-08-30"^^xsd:date ;  
+    schema:vehicleIdentificationNumber "KLAMA48SXRB390996" ;
+    schema:model model:matiz-i ;
+    ex:dealer dealership:praha .
+
+car:6 a schema:Car ;
+    rdfs:label "Green Octavia IV"@en ;
+    schema:color "green"@en ;
+    schema:productionDate "2024-05-14"^^xsd:date ;
+    schema:vehicleIdentificationNumber "TMBJR7NS4R0030824" ;
+    schema:model model:octavia-iv ;
+    ex:buyer person:bruce-churkobesovich .

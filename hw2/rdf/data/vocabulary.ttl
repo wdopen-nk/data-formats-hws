@@ -29,7 +29,7 @@
 # regular customer    Customer -> Dealership   ex:regularCustomerOf
 # buyer               Car      -> Customer     ex:buyer
 # dealer              Car      -> Dealership   ex:dealer
-# model               Car      -> CarModel     schema:model
+# model               Car      -> CarModel     schema:modelnal
 
 #Classes
 
