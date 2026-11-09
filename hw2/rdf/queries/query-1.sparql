@@ -1,0 +1,25 @@
+# For each dealership, show the number of employees, the number of cars it currently has in stock 
+#and the average engine power (kW) of those cars
+# keeps dealerships with no employees or cars in the result.
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX ex:     <http://example.org/vocabulary/>
+
+SELECT ?dealerName
+       (COUNT(DISTINCT ?employee) AS ?employees)
+       (COUNT(DISTINCT ?car)      AS ?carsInStock)
+       (AVG(?power)               AS ?avgEnginePowerKW)
+WHERE {
+  ?dealer a schema:AutoDealer ;
+          schema:name ?dealerName .
+  OPTIONAL { ?employee schema:worksFor ?dealer . }
+  OPTIONAL {
+    ?car ex:dealer ?dealer ;
+         schema:model ?model .
+    ?model ex:enginePower ?power .
+  }
+}
+GROUP BY ?dealerName
+ORDER BY DESC(?carsInStock)

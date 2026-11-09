@@ -1,0 +1,22 @@
+# for each customer, how many cars they bought, the strongest engine (kW), 
+# and whether they are a regular customer of any dealership.
+# Customers who bought nothing are still listed.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX ex:     <http://example.org/vocabulary/>
+
+SELECT ?customerName ?regularCustomer
+       (COUNT(?car) AS ?carsBought)
+       (MAX(?power) AS ?strongestEngine)
+WHERE {
+  ?customer a ex:Customer ;
+            rdfs:label ?customerName .
+  OPTIONAL {
+    ?car ex:buyer ?customer ;
+         schema:model/ex:enginePower ?power .     # property path: car → model → power
+  }
+  BIND(IF(EXISTS { ?customer ex:regularCustomerOf ?d }, "yes", "no") AS ?regularCustomer)
+}
+GROUP BY ?customerName ?regularCustomer
+ORDER BY DESC(?carsBought)
