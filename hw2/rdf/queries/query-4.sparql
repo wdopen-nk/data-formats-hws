@@ -1,0 +1,19 @@
+# Cars in stock at a customer's regular dealership with a model the customer already bought
+
+PREFIX schema: <http://schema.org/>
+PREFIX ex:     <http://example.org/vocabulary/>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?customer ?model ?carInStock ?dealership
+WHERE {
+    ?bought ex:buyer ?c ;
+            schema:model ?m .
+    ?offer ex:dealer ?d ;
+           schema:model ?m ;
+           rdfs:label ?carInStock .
+    ?c ex:regularCustomerOf ?d ;
+       rdfs:label ?customer .
+    ?m schema:name ?model .
+    ?d schema:name ?dealership .
+}
+ORDER BY ?dealership
