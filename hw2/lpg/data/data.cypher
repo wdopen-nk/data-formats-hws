@@ -91,7 +91,7 @@ WITH c, r
 MATCH (m:CarModel {id:r.model})
 MERGE (c)-[:OF_MODEL]->(m);
 
-// CARS IN STOCK  (IN_STOCK_AT with edge property) 
+// CARS IN STOCK 
 WITH [
   {car:'car-1', dealer:'praha', since:'2024-03-01'},
   {car:'car-2', dealer:'brno',  since:'2023-12-04'},
@@ -103,7 +103,7 @@ MATCH (d:Dealership {id:r.dealer})
 MERGE (c)-[s:IN_STOCK_AT]->(d)
   SET s.since = date(r.since);
 
-// SOLD CARS  (BOUGHT_BY with edge properties, price in CZK)
+// SOLD CARS  
 WITH [
   {car:'car-3', customer:'alice-kucerova',       date:'2022-07-15', price:189000},
   {car:'car-4', customer:'bruce-churkobesovich', date:'2019-08-20', price:1450000},
@@ -116,4 +116,3 @@ MERGE (c)-[b:BOUGHT_BY]->(p)
   SET b.date  = date(r.date),
       b.price = r.price;
 
-RETURN 'LPG import finished' AS status;
