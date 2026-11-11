@@ -98,7 +98,7 @@ model:kodiaq-ii a ex:CarModel ;
 # In stock: has a dealer, no buyer.  Sold: has a buyer, no dealer.
 
 car:1 a schema:Car ;
-    rdfs:label "Black Octavia IV "@en ;
+    rdfs:label "Black Octavia IV"@en ;
     schema:color "black"@en ;
     schema:productionDate "2024-02-12"^^xsd:date ;
     schema:vehicleIdentificationNumber "TMBAJ7NXXR0526018" ;
@@ -106,7 +106,7 @@ car:1 a schema:Car ;
     ex:dealer dealership:praha .
 
 car:2 a schema:Car ;
-    rdfs:label "Silver Octavia IV "@en ;
+    rdfs:label "Silver Octavia IV"@en ;
     schema:color "silver"@en ;
     schema:productionDate "2023-11-05"^^xsd:date ;
     schema:vehicleIdentificationNumber "TMBAG7NXXP0159083" ;
@@ -114,7 +114,7 @@ car:2 a schema:Car ;
     ex:dealer dealership:brno .
 
 car:3 a schema:Car ;
-    rdfs:label "Purple Matiz I "@en ;
+    rdfs:label "Purple Matiz I"@en ;
     schema:color "purple"@en ;
     schema:productionDate "2022-05-20"^^xsd:date ;
     schema:vehicleIdentificationNumber "KLAMA48S3NB016613" ;
@@ -122,7 +122,7 @@ car:3 a schema:Car ;
     ex:buyer person:alice-kucerova .
 
 car:4 a schema:Car ;
-    rdfs:label "Red 911 II "@en ;
+    rdfs:label "Red 911 II"@en ;
     schema:color "red"@en ;
     schema:productionDate "1984-07-03"^^xsd:date ;
     schema:vehicleIdentificationNumber "WP0ZZZ911ES186091" ;
@@ -130,7 +130,7 @@ car:4 a schema:Car ;
     ex:buyer person:bruce-churkobesovich.
 
 car:5 a schema:Car ;
-    rdfs:label "White Matiz I "@en ;
+    rdfs:label "White Matiz I"@en ;
     schema:color "white"@en ;
     schema:productionDate "2024-08-30"^^xsd:date ;  
     schema:vehicleIdentificationNumber "KLAMA48SXRB390996" ;

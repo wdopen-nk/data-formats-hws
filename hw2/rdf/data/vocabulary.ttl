@@ -6,13 +6,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
-# Person                       -> schema:Person 
-#   firstName                  -> schema:givenName
-#   lastName                   -> schema:familyName
-#   phoneNumber [0..*]         -> vcard:hasTelephone (tel: IRIs)
-# Employee                     -> ex:Employee (rdfs:subClassOf schema:Person)
-# Customer                     -> ex:Customer (rdfs:subClassOf schema:Person)
-# Dealership                   -> schema:AutoDealer
+# Person                 -> schema:Person 
+#   firstName            -> schema:givenName
+#   lastName             -> schema:familyName
+#   phoneNumber [0..*]   -> vcard:hasTelephone (tel: IRIs)
+# Employee               -> ex:Employee (rdfs:subClassOf schema:Person)
+# Customer               -> ex:Customer (rdfs:subClassOf schema:Person)
+# Dealership             -> schema:AutoDealer
 #   name                 -> schema:name
 #   address              -> schema:address
 #   foundedDate          -> schema:foundingDate
@@ -20,10 +20,10 @@
 #   color                -> schema:color
 #   manufacturedDate     -> schema:productionDate
 #   vin                  -> schema:vehicleIdentificationNumber
-# CarModel                     -> ex:CarModel   (rdfs:subClassOf schema:ProductModel)
-#   modelName                  -> schema:name
-#   debutDate                  -> schema:releaseDate
-#   enginePower                -> ex:enginePower
+# CarModel               -> ex:CarModel 
+#   modelName            -> schema:name
+#   debutDate            -> schema:releaseDate
+#   enginePower          -> ex:enginePower
 #
 # full-time employee  Employee -> Dealership   schema:worksFor
 # regular customer    Customer -> Dealership   ex:regularCustomerOf
