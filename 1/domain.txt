@@ -50,7 +50,7 @@ sold by a dealership.
 Attributes:
 - color: String - exterior color of the car's body.
 - manufacturedDate: Date - date on which the car was manufactured.
-- vin: Integer - Vehicle Identification Number, used to identify a car’s 
+- vin: String - Vehicle Identification Number, used to identify a car’s 
 manufacturer, origin, and specifications.
   Associations:
 - dealer (0..* Car) <-> (0..1 Dealership)
